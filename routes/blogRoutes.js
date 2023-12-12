@@ -29,6 +29,10 @@ module.exports = (app) => {
 
     const cachedBlog = await client.get(req.user.id);
 
+    if (cachedBlog) {
+      return res.send(cachedBlog);
+    }
+
     res.send(blogs);
   });
 
