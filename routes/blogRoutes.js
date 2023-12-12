@@ -21,17 +21,17 @@ module.exports = (app) => {
   app.get("/api/blogs", requireLogin, async (req, res) => {
     const blogs = await Blog.find({ _user: req.user.id });
 
-    const redisUrl = "redis://127.0.0.1:6379";
+    // const redisUrl = "redis://127.0.0.1:6379";
 
-    const client = redis.createClient(redisUrl);
+    // const client = redis.createClient(redisUrl);
 
-    client.get = util.promisify(client.get);
+    // client.get = util.promisify(client.get);
 
-    const cachedBlog = await client.get(req.user.id);
+    // const cachedBlog = await client.get(req.user.id);
 
-    if (cachedBlog) {
-      return res.send(cachedBlog);
-    }
+    // if (cachedBlog) {
+    //   return res.send(cachedBlog);
+    // }
 
     res.send(blogs);
   });
