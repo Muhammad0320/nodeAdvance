@@ -1,8 +1,7 @@
+const redis = require("redis");
 const mongoose = require("mongoose");
 
 const util = require("util");
-
-const redis = require("redis");
 
 const requireLogin = require("../middlewares/requireLogin");
 
@@ -19,7 +18,6 @@ module.exports = (app) => {
   });
 
   app.get("/api/blogs", requireLogin, async (req, res) => {
-    console.log("hello");
     const blogs = await Blog.find({ _user: req.user.id });
 
     const redisUrl = "redis://127.0.0.1:6379";
@@ -34,12 +32,16 @@ module.exports = (app) => {
 
     if (cachedBlog) {
       console.log("From redis");
-      return res.send(cachedBlog);
+      console.log(cachedBlog);
+      console.log(JSON.parse(cachedBlog));
+      return res.send(JSON.parse(cachedBlog));
     }
+
+    console.log("From mongoDB");
 
     res.send(blogs);
 
-    console.log("From mongoDB");
+    client.set(req.user.id, JSON.stringify(blogs));
   });
 
   app.post("/api/blogs", requireLogin, async (req, res) => {
