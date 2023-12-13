@@ -19,21 +19,27 @@ module.exports = (app) => {
   });
 
   app.get("/api/blogs", requireLogin, async (req, res) => {
+    console.log("hello");
     const blogs = await Blog.find({ _user: req.user.id });
 
-    // const redisUrl = "redis://127.0.0.1:6379";
+    const redisUrl = "redis://127.0.0.1:6379";
 
-    // const client = redis.createClient(redisUrl);
+    const client = redis.createClient(redisUrl);
 
-    // client.get = util.promisify(client.get);
+    client.get = util.promisify(client.get);
 
-    // const cachedBlog = await client.get(req.user.id);
+    const cachedBlog = await client.get(req.user.id);
 
-    // if (cachedBlog) {
-    //   return res.send(cachedBlog);
-    // }
+    console.log("What is happening");
+
+    if (cachedBlog) {
+      console.log("From redis");
+      return res.send(cachedBlog);
+    }
 
     res.send(blogs);
+
+    console.log("From mongoDB");
   });
 
   app.post("/api/blogs", requireLogin, async (req, res) => {
