@@ -15,10 +15,6 @@ const exec = mongoose.Query.prototype.exec;
 mongoose.Query.prototype.exec = async function () {
   client.get = util.promisify(client.get);
 
-  console.log(this.getQuery());
-
-  console.log(this.mongooseCollection.name);
-
   //   console.log({ ...this.getQuery(), collection: this.mongooseCollection.name });
 
   const key = JSON.parse(
@@ -36,6 +32,8 @@ mongoose.Query.prototype.exec = async function () {
   }
 
   const result = await exec.apply(this, arguments);
+
+  console.log(result);
 
   client.set(key, result);
 };
