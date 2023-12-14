@@ -1,10 +1,19 @@
 const mongoose = require('mongoose');
 
+const util = require('util');
+
+const redis = require('redis');
+
+const redisUrl = 'redis://127.0.0.1:6379';
+
+const client = redis.createClient(redisUrl);
+
+client.get = util.promisify(client.get);
+
 const exec = mongoose.Query.prototype.exec;
 
-mongoose.Query.prototype.exec = function () {
-  console.log("I'M ABOUT TO RUN A QUERY");
-  //   console.log('Let\'s see ');
+mongoose.Query.prototype.exec = async function () {
+  client.get = util.promisify(client.get);
 
   console.log(this.getQuery());
 
@@ -18,7 +27,17 @@ mongoose.Query.prototype.exec = function () {
     })
   );
 
-  return exec.apply(this, arguments);
+  const cachedValue = await client.get(key);
+
+  if (cachedValue) {
+    console.log(cachedValue);
+
+    return cachedValue;
+  }
+
+  const result = await exec.apply(this, arguments);
+
+  client.set(key, result);
 };
 
 /*
