@@ -10,6 +10,8 @@ mongoose.Query.prototype.exec = function () {
 
   console.log(this.mongooseCollection.name);
 
+  console.log({ ...this.getQuery(), collection: this.mongooseCollection.name });
+
   return exec.apply(this, arguments);
 };
 
