@@ -16,7 +16,7 @@ const redis = require('redis');
 
 const util = require('util');
 
-            const blogs = await Blog.find({ _user: req.user.id });
+             const blogs = await Blog.find({ _user: req.user.id });
 
     const redisUrl = "redis://127.0.0.1:6379";
 
