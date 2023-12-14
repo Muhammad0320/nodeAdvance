@@ -1,11 +1,6 @@
-const redis = require('redis');
-const mongoose = require('mongoose');
-
-const util = require('util');
-
-const requireLogin = require('../middlewares/requireLogin');
-
 const Blog = mongoose.model('Blog');
+const mongoose = require('mongoose');
+const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = app => {
   app.get('/api/blogs/:id', requireLogin, async (req, res) => {
