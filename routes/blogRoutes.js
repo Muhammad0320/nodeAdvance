@@ -32,8 +32,7 @@ module.exports = (app) => {
 
     if (cachedBlog) {
       console.log("From redis");
-      console.log(cachedBlog);
-      console.log(JSON.parse(cachedBlog));
+
       return res.send(JSON.parse(cachedBlog));
     }
 
