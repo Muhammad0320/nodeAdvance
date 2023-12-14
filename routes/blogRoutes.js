@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Blog = mongoose.model('Blog');
 const requireLogin = require('../middlewares/requireLogin');
+require('../services/cache');
 
 module.exports = app => {
   app.get('/api/blogs/:id', requireLogin, async (req, res) => {
