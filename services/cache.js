@@ -28,12 +28,16 @@ mongoose.Query.prototype.exec = async function () {
   if (cachedValue) {
     console.log(cachedValue);
 
-    return cachedValue;
+    const doc = new this.model(JSON.parse(cachedValue));
+
+    return doc;
   }
 
   const result = await exec.apply(this, arguments);
 
   console.log(result);
+
+  // kareem
 
   client.set(key, result);
 };
