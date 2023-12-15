@@ -10,7 +10,7 @@ client.get = util.promisify(client.get);
 
 const exec = mongoose.Query.prototype.exec;
 
-mongoose.Query.prototype.exec = function () {
+mongoose.Query.prototype.cache = function () {
   this.useCache = true;
 
   return this;
