@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Blog = mongoose.model('Blog');
-const requireLogin = require('../middlewares/requireLogin');
-const { clearCache } = require('../services/cache');
 const cleanCache = require('../middlewares/clearCache');
+const requireLogin = require('../middlewares/requireLogin');
+
 require('../services/cache');
 
 module.exports = app => {
