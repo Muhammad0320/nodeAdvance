@@ -31,8 +31,8 @@ mongoose.Query.prototype.exec = async function () {
 
   const cachedValue = await client.get(key);
 
-  console.log(cachedValue);
-  console.log(key);
+  //   console.log(cachedValue);
+  //   console.log(key);
 
   if (cachedValue) {
     const doc = JSON.parse(cachedValue);
