@@ -19,8 +19,6 @@ mongoose.Query.prototype.cache = function (options = { key: '' }) {
 };
 
 mongoose.Query.prototype.exec = async function () {
-  //   console.log({ ...this.getQuery(), collection: this.mongooseCollection.name });
-
   if (!this.useCache) {
     return exec.apply(this, arguments);
   }
@@ -33,8 +31,6 @@ mongoose.Query.prototype.exec = async function () {
 
   const cachedValue = await client.hget(this.hashKey, key);
 
-  //   console.log(cachedValue);
-
   if (cachedValue) {
     const doc = JSON.parse(cachedValue);
 
@@ -44,10 +40,6 @@ mongoose.Query.prototype.exec = async function () {
   }
 
   const result = await exec.apply(this, arguments);
-
-  console.log(result);
-
-  // kareem
 
   client.hset(this.hashKey, key, JSON.stringify(result), 'EX', 10);
 };
