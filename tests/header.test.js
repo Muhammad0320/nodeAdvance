@@ -19,3 +19,11 @@ test('the header has a correct header', async () => {
 
   expect(text).toEqual('Blogster');
 });
+
+test('clicking login starts oauth flow', async () => {
+  await page.click('.right a');
+
+  const url = await page.url();
+
+  console.log(url);
+});
