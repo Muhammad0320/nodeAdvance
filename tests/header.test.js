@@ -14,7 +14,7 @@ afterEach(async () => {
   await browser.close();
 });
 
-test('we can launch the browser', async () => {
+test('the header has a correct header', async () => {
   const text = await page.$eval('a.brand-logo', el => el.innerHTML);
 
   expect(text).toEqual('Blogster');
