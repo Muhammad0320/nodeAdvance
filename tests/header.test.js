@@ -10,12 +10,6 @@ beforeEach(async () => {
   await page.goto('localhost:3000');
 });
 
-test('Add two numbers', () => {
-  const sum = 5 + 5;
-
-  expect(sum).toEqual(10);
-});
-
 test('we can launch the browser', async () => {
   const text = await page.$eval('a.brand-logo', el => el.innerHTML);
 
