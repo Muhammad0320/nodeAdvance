@@ -54,6 +54,4 @@ test.only('show logout button, when logged in', async () => {
   await page.setCookie({ name: 'session.sig', value: sig });
 
   await page.goto('localhost:3000');
-
-  console.log(sig, sessionStr);
 });
