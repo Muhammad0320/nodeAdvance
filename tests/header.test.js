@@ -49,9 +49,9 @@ test.only('show logout button, when logged in', async () => {
 
   const sig = keygrip.sign('session=' + sessionStr);
 
-  await page.setCookie('session', sessionStr);
+  await page.setCookie({ name: 'session', value: sessionStr });
 
-  await page.setCookie('session.sig', sig);
+  await page.setCookie({ name: 'session.sig', value: sig });
 
   await page.goto('localhost:3000');
 
