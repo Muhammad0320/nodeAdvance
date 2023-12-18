@@ -28,7 +28,7 @@ test('clicking login starts oauth flow', async () => {
   expect(url).toMatch(/accounts\.google\.com/);
 });
 
-test.only('show logout button, when signed in', async () => {
+test('show logout button, when signed in', async () => {
   const Buffer = require('safe-buffer').Buffer;
 
   const Keygrip = require('keygrip');
