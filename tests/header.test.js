@@ -37,7 +37,7 @@ test.only('show logout button, when logged in', async () => {
 
   const sessionObj = {
     passport: {
-      id,
+      user: id,
     },
   };
 
