@@ -11,7 +11,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  await browser.close();
+  //   await browser.close();
 });
 
 test('the header has a correct header', async () => {
@@ -28,7 +28,7 @@ test('clicking login starts oauth flow', async () => {
   expect(url).toMatch(/accounts\.google\.com/);
 });
 
-test('show logout button, when logged in', () => {
+test.only('show logout button, when logged in', async () => {
   const Buffer = require('safe-buffer').Buffer;
 
   const Keygrip = require('keygrip');
@@ -48,6 +48,12 @@ test('show logout button, when logged in', () => {
   const keygrip = new Keygrip([keys.cookieKey]);
 
   const sig = keygrip.sign('session=' + sessionStr);
+
+  await page.setCookie('session', sessionStr);
+
+  await page.setCookie('session.sig', sig);
+
+  await page.goto('localhost:3000');
 
   console.log(sig, sessionStr);
 });
