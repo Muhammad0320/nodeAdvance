@@ -27,3 +27,17 @@ test('clicking login starts oauth flow', async () => {
 
   expect(url).toMatch(/accounts\.google\.com/);
 });
+
+test('show logout button, when logged in', () => {
+  const Buffer = require('safe-buffer').Buffer;
+
+  const id = '6579ad679350c94938ec3951';
+
+  const sessionObj = {
+    passport: {
+      id,
+    },
+  };
+
+  const sessionStr = Buffer.from(JSON.stringify(sessionObj)).toString('base64');
+});
