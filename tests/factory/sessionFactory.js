@@ -1,7 +1,6 @@
-const Buffer = require('safe-buffer').Buffer;
-
 const Keygrip = require('keygrip');
 const keys = require('../../config/keys');
+const Buffer = require('safe-buffer').Buffer;
 
 const sessionFactory = user => {
   const sessionObj = {
@@ -15,6 +14,8 @@ const sessionFactory = user => {
   const keygrip = new Keygrip([keys.cookieKey]);
 
   const sig = keygrip.sign('session=' + session);
+
+  return { sig, session };
 };
 
 module.exports = sessionFactory;
