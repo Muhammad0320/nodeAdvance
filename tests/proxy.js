@@ -16,4 +16,8 @@ class MoreGreetings {
   german() {
     return 'hallo';
   }
+
+  french() {
+    return 'bonjour';
+  }
 }
