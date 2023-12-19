@@ -33,3 +33,28 @@ const allGreetings = new Proxy(moreGreetings, {
 });
 
 console.log(allGreetings.french());
+
+class Page {
+  setCookie() {
+    console.log("I'm setting the cookie");
+  }
+
+  goto() {
+    console.log("I'm going to another page");
+  }
+}
+
+class CustomPage {
+  constructor(page) {
+    this.page = page;
+  }
+
+  login() {
+    this.page.goto();
+    this.page.setCookie();
+  }
+}
+
+const page = new Page();
+
+const customPage = new CustomPage();
