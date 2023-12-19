@@ -21,3 +21,15 @@ class MoreGreetings {
     return 'bonjour';
   }
 }
+
+const moreGreetings = new MoreGreetings();
+
+const greetings = new Greetings();
+
+const allGreetings = new Proxy(moreGreetings, {
+  get: function (target, property) {
+    return target[property] || greetings[property];
+  },
+});
+
+console.log(allGreetings.french());
