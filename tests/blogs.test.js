@@ -11,3 +11,9 @@ beforeEach(async () => {
 afterEach(async () => {
   await page.close();
 });
+
+test('When logged in, can see blogs create form', async () => {
+  await page.login();
+
+  await page.click('a.btn-floating');
+});
