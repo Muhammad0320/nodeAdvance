@@ -1,6 +1,3 @@
-const puppeteer = require('puppeteer');
-const sessionFactory = require('./factory/sessionFactory');
-const userFactory = require('./factory/userFactory');
 const CustomPage = require('./helper/page');
 
 let page;
