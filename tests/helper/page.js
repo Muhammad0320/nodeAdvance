@@ -22,4 +22,6 @@ class CustomPage {
   }
 }
 
-module.exports = CustomPage;
+const buildPage = CustomPage.build();
+
+module.exports = buildPage;
