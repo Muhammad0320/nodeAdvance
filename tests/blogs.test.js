@@ -16,4 +16,8 @@ test('When logged in, can see blogs create form', async () => {
   await page.login();
 
   await page.click('a.btn-floating');
+
+  const label = await page.getContentOf('form label');
+
+  expect(label).toEqual('Blog Title');
 });
