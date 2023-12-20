@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 
 class CustomPage {
-  constructor(props) {
-    this.props = props;
+  constructor(page) {
+    this.page = page;
   }
 
   static async build() {
@@ -11,6 +11,14 @@ class CustomPage {
     const page = await browser.newPage();
 
     const customPage = new CustomPage(page);
+
+    const superPage = new Proxy(customPage, {
+      get: function (target, property) {
+        return target[property] || page[property] || browser[property];
+      },
+    });
+
+    return superPage;
   }
 }
 
