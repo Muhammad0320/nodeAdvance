@@ -38,7 +38,7 @@ class CustomPage {
   }
 
   async getContentOf(selector) {
-    const content = this.page.$eval(selector, el => el.innerHTML);
+    const content = await this.page.$eval(selector, el => el.innerHTML);
 
     return content;
   }
