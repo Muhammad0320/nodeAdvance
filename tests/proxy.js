@@ -49,12 +49,22 @@ class CustomPage {
     this.page = page;
   }
 
+  static build() {
+    const page = new Page();
+
+    const customPage = new CustomPage(page);
+
+    const superPage = new Proxy(customPage, {
+      get: function (target, property) {
+        return target[property] || page[property];
+      },
+    });
+
+    return superPage;
+  }
+
   login() {
     this.page.goto();
     this.page.setCookie();
   }
 }
-
-const page = new Page();
-
-const customPage = new CustomPage();
