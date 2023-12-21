@@ -29,5 +29,15 @@ describe('When logged in', async () => {
     beforeEach(async () => {
       await page.click('form button');
     });
+
+    test('the form shows an error message', async () => {
+      const titleError = await page.getContentOf('.title .red-text');
+
+      const contentError = await page.getContentOf('.content .red-text');
+
+      expect(titleError).toEqual('You must provide a value');
+
+      expect(contentError).toEqual('You must provide a value');
+    });
   });
 });
