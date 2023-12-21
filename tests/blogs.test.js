@@ -24,4 +24,10 @@ describe('When logged in', async () => {
 
     expect(label).toEqual('Blog Title');
   });
+
+  describe('And using invalid input', async () => {
+    beforeEach(async () => {
+      await page.click('form button');
+    });
+  });
 });
