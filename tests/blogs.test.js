@@ -12,12 +12,16 @@ afterEach(async () => {
   await page.close();
 });
 
-test('When logged in, can see blogs create form', async () => {
-  await page.login();
+describe('When logged in', async () => {
+  beforeEach(async () => {
+    await page.login();
 
-  await page.click('a.btn-floating');
+    await page.click('a.btn-floating');
+  });
 
-  const label = await page.getContentOf('form label');
+  test('Can see blogs create form', async () => {
+    const label = await page.getContentOf('form label');
 
-  expect(label).toEqual('Blog Title');
+    expect(label).toEqual('Blog Title');
+  });
 });
