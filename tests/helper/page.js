@@ -75,13 +75,7 @@ class CustomPage {
   async sendRequest(data) {
     return Promise.all(
       data.map(async ({ method, url, blog }) => {
-        const result = await this.page.evaluate(() => {
-          return fetch('/api/blogs', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'same-origin',
-          }).then(res => res.json());
-        });
+        return this[method](url, blog);
       })
     );
   }
