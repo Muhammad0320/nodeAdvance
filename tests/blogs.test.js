@@ -55,7 +55,7 @@ describe('When logged in', async () => {
     });
   });
 
-  describe('And using invalid input', async () => {
+  describe('And using invalid inprbbbut', async () => {
     beforeEach(async () => {
       await page.click('form button');
     });
@@ -69,5 +69,23 @@ describe('When logged in', async () => {
 
       expect(contentError).toEqual('You must provide a value');
     });
+  });
+});
+
+describe('when user is not signed in', async () => {
+  test('show an error', async () => {
+    const result = await page.evaluate(async () => {
+      return fetch('/api/blogs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body: JSON.stringify({
+          title: 'My title browser',
+          content: 'My content',
+        }),
+      }).then(res => res.json());
+    });
+
+    expect(result).toEqual({ error: 'You must log in!' });
   });
 });
