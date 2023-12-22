@@ -56,7 +56,7 @@ class CustomPage {
   }
 
   async post(url, data) {
-    const result = await page.evaluate(
+    const result = await this.page.evaluate(
       async (_url, _data) => {
         return fetch(_url, {
           method: 'POST',
