@@ -55,6 +55,23 @@ class CustomPage {
     return result;
   }
 
+  async post(url, data) {
+    const result = await page.evaluate(
+      async (_url, _data) => {
+        return fetch(_url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify(_data),
+        }).then(res => res.json());
+      },
+      url,
+      data
+    );
+
+    return result;
+  }
+
   // async sendRequest(data) {
 
   //   return Promise.all(
