@@ -42,6 +42,38 @@ class CustomPage {
 
     return content;
   }
+
+  async get(url) {
+    const result = await this.page.evaluate(async _url => {
+      return fetch(_url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+      }).then(res => res.json());
+    }, url);
+
+    return result;
+  }
+
+  // async sendRequest(data) {
+
+  //   return Promise.all(
+
+  //     data.map( async data  => {
+
+  //       const result = await this.page.evaluate(() => {
+  //       return fetch('/api/blogs', {
+  //         method: 'GET',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         credentials: 'same-origin',
+  //       }).then(res => res.json());
+  //     }, )
+
+  //   })
+
+  //    )
+
+  // }
 }
 
 module.exports = CustomPage;
