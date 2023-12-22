@@ -89,7 +89,7 @@ describe('when user is not signed in', async () => {
     expect(result).toEqual({ error: 'You must log in!' });
   });
 
-  test('User cannot view, list of blog posts', async () => {
+  test('User cannot view list of blog posts', async () => {
     const result = await page.evaluate(() => {
       return fetch('/api/blogs', {
         method: 'GET',
