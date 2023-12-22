@@ -89,7 +89,9 @@ describe('when user is not signed in', async () => {
   test('Blog related actions are prohibited', async () => {
     const result = await page.sendRequest(actions);
 
-    result.map(res => expect(res).toEqual({ error: 'You must log in!' }));
+    for (const res of result) {
+      expect(res).toEqual({ error: 'You must log in!' });
+    }
   });
 
   test('show an error', async () => {
