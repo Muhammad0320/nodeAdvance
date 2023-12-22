@@ -40,7 +40,19 @@ describe('When logged in', async () => {
       expect(confirmationText).toEqual('Please confirm your entries');
     });
 
-    test('submitting then saves add blog to index page', async () => {});
+    test('Submitting then saves add blog to index page', async () => {
+      await page.click('buton.green');
+
+      await page.waitFor('.card');
+
+      const title = await page.getContentOf('.card-title');
+
+      const content = await page.getContentOf('p');
+
+      expect(title).toEqual('My Test title');
+
+      expect(content).toEqual('My Test content');
+    });
   });
 
   describe('And using invalid input', async () => {
