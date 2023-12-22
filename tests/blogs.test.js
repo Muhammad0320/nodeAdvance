@@ -72,7 +72,22 @@ describe('When logged in', async () => {
   });
 });
 
+const actions = [
+  {
+    method: 'post',
+    url: '/api/blogs',
+    data: { title: 'title', content: 'content' },
+  },
+
+  {
+    method: 'get',
+    url: '/api/blogs',
+  },
+];
+
 describe('when user is not signed in', async () => {
+  test('Blog related actions are prohibited', async () => {});
+
   test('show an error', async () => {
     const result = await page.evaluate(async () => {
       return fetch('/api/blogs', {
