@@ -76,7 +76,7 @@ const actions = [
   {
     method: 'post',
     url: '/api/blogs',
-    data: { title: 'title', content: 'content' },
+    blog: { title: 'title', content: 'content' },
   },
 
   {
@@ -86,7 +86,11 @@ const actions = [
 ];
 
 describe('when user is not signed in', async () => {
-  test('Blog related actions are prohibited', async () => {});
+  test('Blog related actions are prohibited', async () => {
+    const result = await page.sendRequest(actions);
+
+    result.map(res => expect(res).toEqual({ error: 'You must log in!' }));
+  });
 
   test('show an error', async () => {
     const result = await page.evaluate(async () => {
@@ -105,7 +109,7 @@ describe('when user is not signed in', async () => {
   });
 
   test('User cannot view list of blog posts', async () => {
-    const result = await page.evaluate(() => {
+    const result = await page.evaluate(async () => {
       return fetch('/api/blogs', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
