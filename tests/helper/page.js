@@ -71,7 +71,7 @@ class CustomPage {
 
     return result;
   }
-
+  
   async sendRequest(data) {
     return Promise.all(
       data.map(async ({ method, url, blog }) => {

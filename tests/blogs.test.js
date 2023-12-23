@@ -85,6 +85,8 @@ const actions = [
   },
 ];
 
+ 
+
 describe('when user is not signed in', async () => {
   test('Blog related actions are prohibited', async () => {
     const result = await page.sendRequest(actions);
