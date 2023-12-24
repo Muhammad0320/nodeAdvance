@@ -46,11 +46,13 @@ class BlogFormReview extends Component {
 
     const { submitBlog, history, formValues } = this.props;
 
-    submitBlog(formValues, history);
+    submitBlog(formValues, this.state.image, history);
   }
 
   onFileChange(e) {
     this.setState({ image: e.target.files[0] });
+
+    console.log(e.target.files[0]);
   }
 
   render() {
