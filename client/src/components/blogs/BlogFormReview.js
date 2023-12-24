@@ -49,6 +49,10 @@ class BlogFormReview extends Component {
     submitBlog(formValues, history);
   }
 
+  onFileChange(e) {
+    this.setState({ image: e.target.files[0] });
+  }
+
   render() {
     return (
       <form onSubmit={this.onSubmit.bind(this)}>
